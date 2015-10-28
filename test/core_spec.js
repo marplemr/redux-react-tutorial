@@ -3,6 +3,7 @@ import {expect} from 'chai';
 import {setDogBreeds, next, vote} from '../src/core';
 
 describe('application logic', () => {
+  
   describe('vote', () => {
 
     it('creates a tally for the voted dog entry', () => {
@@ -50,6 +51,7 @@ describe('application logic', () => {
   });
 
   describe('next', () => {
+
     it('takes the next two dog breeds under vote', () => {
       const state = Map({
         dogBreeds: List.of('Chihuahua', 'Miniature Pinscher', 'Poodle')
@@ -62,6 +64,7 @@ describe('application logic', () => {
         dogBreeds: List.of('Poodle')
       }));
     });
+
     it('puts winner of current vote back to dogBreeds', () => {
       const state = Map({
         vote: Map({
@@ -81,6 +84,7 @@ describe('application logic', () => {
         dogBreeds: List.of('Bull Dog', 'Chihuahua')
       }));
     });
+
     it('puts both from tied vote back to dogBreeds', () => {
       const state = Map({
         vote: Map({
@@ -100,6 +104,7 @@ describe('application logic', () => {
         dogBreeds: List.of('Bull Dog', 'Chihuahua', 'Miniature Pinscher')
       }));
     });
+
     it('marks winner when just one entry left', () => {
       const state = Map({
         vote: Map({
@@ -116,6 +121,7 @@ describe('application logic', () => {
         winner: 'Chihuahua'
       }));
     });
+
   });
 
 });
