@@ -38,9 +38,9 @@ export function next(state) {
 //sets a 'tally' node under the vote node. The tally node will have the two dogBreed nodes under it.
 //sets the value of the tally under each dogBreed.
 //if tally key is missing, set it and set it to 0; otherwise, increment it by one
-export function vote(state, dogBreed) {
-  return state.updateIn(
-    ['vote', 'tally', dogBreed],
+export function vote(voteState, dogBreed) {
+  return voteState.updateIn(
+    ['tally', dogBreed],
     0,
     tally => tally + 1
   );

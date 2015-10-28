@@ -3,50 +3,40 @@ import {expect} from 'chai';
 import {setDogBreeds, next, vote} from '../src/core';
 
 describe('application logic', () => {
-
   describe('vote', () => {
-  it('creates a tally for the voted dog entry', () => {
-    const state = Map({
-      vote: Map({
+
+    it('creates a tally for the voted dog entry', () => {
+      const state = Map({
         pair: List.of('Chihuahua', 'Miniature Pinscher')
-      }),
-      dogBreeds: List()
-    });
-    const nextState = vote(state, 'Chihuahua');
-    expect(nextState).to.equal(Map({
-      vote: Map({
+      })
+      const nextState = vote(state, 'Chihuahua');
+      expect(nextState).to.equal(Map({
         pair: List.of('Chihuahua', 'Miniature Pinscher'),
         tally: Map({
           'Chihuahua': 1
         })
-      }),
-      dogBreeds: List()
-    }));
-  });
-  it('adds to existing tally for the voted entry', () => {
+      }))
+    });
+
+    it('adds to existing tally for the voted entry', () => {
       const state = Map({
-        vote: Map({
-          pair: List.of('Chihuahua', 'Miniature Pinscher'),
-          tally: Map({
-            'Chihuahua': 3,
-            'Miniature Pinscher': 2
-          })
-        }),
-        entries: List()
+        pair: List.of('Chihuahua', 'Miniature Pinscher'),
+        tally: Map({
+          'Chihuahua': 3,
+          'Miniature Pinscher': 2
+        })
       });
       const nextState = vote(state, 'Chihuahua');
       expect(nextState).to.equal(Map({
-        vote: Map({
-          pair: List.of('Chihuahua', 'Miniature Pinscher'),
-          tally: Map({
-            'Chihuahua': 4,
-            'Miniature Pinscher': 2
-          })
-        }),
-        entries: List()
+        pair: List.of('Chihuahua', 'Miniature Pinscher'),
+        tally: Map({
+          'Chihuahua': 4,
+          'Miniature Pinscher': 2
+        })
       }));
     });
-});
+
+  });
 
   describe('setDogBreeds', () => {
     it('add dog breeds to the state', () => {

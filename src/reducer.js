@@ -7,7 +7,9 @@ export default function reducer(state = INITIAL_STATE, action) {
   case 'NEXT':
     return next(state);
   case 'VOTE':
-    return vote(state, action.dogBreed)
+    return state.update('vote',
+                        voteState => vote(voteState, action.dogBreed))
+    //return vote(state, action.dogBreed)
   }
   return state; //if reducer doesn't recognize action, it will return the current state
 }
