@@ -10,8 +10,10 @@ export default function startServer(store) {
   );
 
   //whenever a client connection occurs, emit the entire state to the client app
+  //whenever a client sends an action to server, dispatch it to the redux store
   io.on('connection', (socket) => {
     socket.emit('state', store.getState().toJS());
+    socket.on('action', store.dispatch.bind(store));
   });
 
 }
